@@ -3,6 +3,31 @@ A simple jQuery plugin to convert HTML tables to CSV
 
 ## Usage
 
+Import jQuery and this script
+
+```html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="src/table2csv.js"></script>
+```
+
+then invoke the `table2csv()` function on the jQuery object of the table
+
+```javascript
+$("table").first().table2csv(); // default action is 'download'
+```
+
+The plugin currently convert just one table at a time and must be called directly on the table you want to convert.
+These limits will hopefully be removed in future versions.
+
+`table2csv()` accepts 2 arguments, both optional:
+
+`table2csv(action, options)`
+
+See below for the description.
+
+
+### Example
+
 ```html
 <table id="tab">
   <tr>
