@@ -35,7 +35,7 @@ A simple jQuery plugin to convert HTML tables to CSV
 
 ```javascript
 // download the content of table "tab"
-$("#tab").table2csv();
+$("#tab").table2csv(); // default action is 'download'
 ```
 
 This will start the download of a file called 'table.csv' which will contain the following:
@@ -48,31 +48,51 @@ This will start the download of a file called 'table.csv' which will contain the
     
 You can change the name of the downlaoded file and other settings using the options.
 
+### Actions
+
+* 'download'  
+This is the default action (i.e. the one performed if you call `table2csv()` without any argument).
+Convert the table to a csv and start the download of the file. The file name can be specified in the options (default is `table.csv`).
+
+* 'output'  
+With this action the csv output is not downloaded as a file, but appended as text inside the html page.
+Use the `appendTo` option to specify the jQuery selector of the destination element (defailt is `body`).
+
 ### Options
 
 #### General options
 * separator  
 `default: ','`  
 The field separator to use in the csv
+
 * newline  
 `default: '\n'`  
 The line separator to use in the csv
+
 * quoteFields  
 `default: true`  
 Whether to quote fields in the csv
+
 * excludeColumns  
 `default: ''`  
 jQuery selector for the columns you don't want to export in the csv (tipically a list of classes)
+
 * excludeRows  
 `default: ''`  
 jQuery selector for the rows you don't want to export in the csv (tipically a list of classes)
 
 #### Download options
+
+These options apply only when the 'download' action is used
+
 * filename  
 `default: 'table.csv'`  
 This is the name given to the file when the 'download' action is invoked
 
 #### Output options
+
+These options apply only when the 'output' action is used
+
 * appendTo  
 `default: 'body'`  
 jQuery selector of the element inside which append the generated csv text. This is only used when the 'output' action is invoked
