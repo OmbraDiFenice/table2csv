@@ -12,7 +12,7 @@
 		/* general options */
 		separator: ',',
 		newline: '\n',
-		insertHeader: true,
+		quoteFields: true,
 		excludeColumns: '',
 		excludeRows: ''
 	};
@@ -48,7 +48,7 @@
 			.each(function(i, col) {
 				col = $(col);
 				
-				output += quote(col.text());
+				output += options.quoteFields ? quote(col.text()) : col.text();
 				console.log(i);
 				if(i != numCols-1) {
 					output += options.separator;
@@ -64,6 +64,8 @@
 	$.fn.table2csv = function(action, opt) {
 		if(typeof action === 'object') {
 			opt = action;
+			action = 'download';
+		} else if(action === undefined) {
 			action = 'download';
 		}
 		
