@@ -81,7 +81,7 @@ Convert the table to a csv and start the download of the file. The file name can
 
 * 'output'  
 With this action the csv output is not downloaded as a file, but appended as text inside the html page.
-Use the `appendTo` option to specify the jQuery selector of the destination element (defailt is `body`).
+Use the `appendTo` option to specify the jQuery selector of the destination element (default is `body`).
 
 ### Options
 
