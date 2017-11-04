@@ -41,7 +41,6 @@
 		var rows = table.find('tr').not(options.excludeRows);
 		
 		var numCols = rows.first().find("td,th").filter(":visible").not(options.excludeColumns).length;
-		console.log(numCols)
 		
 		rows.each(function() {
 			$(this).find("td,th").filter(":visible").not(options.excludeColumns)
@@ -49,7 +48,6 @@
 				col = $(col);
 				
 				output += options.quoteFields ? quote(col.text()) : col.text();
-				console.log(i);
 				if(i != numCols-1) {
 					output += options.separator;
 				} else {
