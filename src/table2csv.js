@@ -13,6 +13,7 @@
 		separator: ',',
 		newline: '\n',
 		quoteFields: true,
+		trimContent: true,
 		excludeColumns: '',
 		excludeRows: ''
 	};
@@ -47,7 +48,10 @@
 			.each(function(i, col) {
 				col = $(col);
 				
-				output += options.quoteFields ? quote(col.text()) : col.text();
+				// Strip whitespaces
+				var content = options.trimContent ? $.trim(col.text()) : col.text();
+				
+				output += options.quoteFields ? quote(content) : content;
 				if(i != numCols-1) {
 					output += options.separator;
 				} else {
