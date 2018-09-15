@@ -106,9 +106,9 @@ jQuery selector for the columns you don't want to export in the csv (tipically a
 `default: ''`  
 jQuery selector for the rows you don't want to export in the csv (tipically a list of classes)
 
-* trimContent
-`default: true`
-Trims the content of individual <th>, <td> tags of whitespaces. This will produce valid output even if the table is indented.
+* trimContent  
+`default: true`   
+Trims the content of individual \<th>, \<td> tags of whitespaces. This will produce valid output even if the table is indented.
 
 #### Download options
 
