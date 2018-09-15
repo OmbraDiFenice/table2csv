@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="src/table2csv.js"></script>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" charset="utf-8"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</head>
+<body class="container mb-5">
+
+<h1><a href="https://www.npmjs.com/package/table2csv">table2csv</a> live example</h1>
+
+<p>
+    <a class="github-button" href="https://github.com/OmbraDiFenice/table2csv" data-icon="octicon-star" aria-label="Star OmbraDiFenice/table2csv on GitHub">Star</a>
+    <a class="github-button" href="https://github.com/OmbraDiFenice/table2csv/fork" data-icon="octicon-repo-forked" aria-label="Fork OmbraDiFenice/table2csv on GitHub">Fork</a>
+    <a class="github-button" href="https://github.com/OmbraDiFenice/table2csv/issues" data-icon="octicon-issue-opened" aria-label="Issue OmbraDiFenice/table2csv on GitHub">Issue</a>
+    <a href="https://github.com/OmbraDiFenice/table2csv"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+</p>
+
+<p>A simple jQuery plugin to convert HTML tables to CSV</p>
+
+<p>I wrote this plugin in my spare time. Feel free to file an issue or create a pull request if you think I missed something!</p>
+
+<h2>Usage</h2>
+<p>Import jQuery and this script</p>
+
+<pre>
+    <code>
+&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/path/to/table2csv.js&quot;>&lt;/script&gt;
+    </code>
+</pre>
+
+<p>then invoke the table2csv() function on the jQuery object of the table</p>
+
+<pre><code class="javascript">$("table").first().table2csv(); // default action is 'download'</code></pre>
+
+<p>The plugin currently convert just one table at a time and must be called directly on the table you want to convert.</p>
+
+<p><code>table2csv()</code> accepts 2 arguments, both optional: <code>action</code> and <code>options</code>.
+    <a href="https://www.npmjs.com/package/table2csv">Click here</a> for full documentation or just try the live example below.</p>
+
+<h2>Interactive example</h2>
+
+<p>Below an example table and the corresponding HTML code</p>
+
+<div class="d-flex flex-row justify-content-around align-items-center">
+    <div>
+        <div id="tabContainer">
+            <table id="tab">
+                <tr class="row0">
+                    <th class="col1">Company</th>
+                    <th class="col2">Contact</th>
+                    <th class="col3">Country</th>
+                </tr>
+                <tr class="row1">
+                    <td class="col1">     Alfreds Futterkiste</td>
+                    <td class="col2">		Maria Anders</td>
+                    <td class="col3">Germany</td>
+                </tr>
+                <tr class="row2">
+                    <td class="col1">Centro comercial Moctezuma 	</td>
+                    <td class="col2">Francisco Chang    </td>
+                    <td class="col3">Mexico	</td>
+                </tr>
+                <tr class="row3">
+                    <td class="col1">Ernst Handel</td>
+                    <td class="col2">Roland Mendel</td>
+                    <td class="col3">Austria</td>
+                </tr>
+                <tr class="row4">
+                    <td class="col1">Island Trading</td>
+                    <td class="col2">Helen Bennett</td>
+                    <td class="col3">UK</td>
+                </tr>
+                <tr class="row5">
+                    <td class="col1">Laughing Bacchus Winecellars</td>
+                    <td class="col2">Yoshi Tannamuri</td>
+                    <td class="col3">Canada</td>
+                </tr>
+                <tr class="row6">
+                    <td class="col1">Magazzini Alimentari Riuniti</td>
+                    <td class="col2">Giovanni Rovelli</td>
+                    <td class="col3">Italy</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <pre class="pre-scrollable">
+        <code id="html"></code>
+    </pre>
+</div>
+
+<p>Change values on the left to see the corresponding code, then press the button to see that code in action!</p>
+
+<div class="d-flex flex-row justify-content-around align-items-center">
+    <div id="parameters">
+        <fieldset class="border p-3">
+            <legend class="w-auto">Action</legend>
+
+            <input type="radio" id="download-radio" name="action" value="download"/>
+            <label for="download-radio">download</label>
+
+            <input type="radio" id="output-radio" name="action" value="output" checked/>
+            <label for="output-radio">output</label>
+        </fieldset>
+
+        <fieldset class="border p-3" id="optionsControls">
+            <legend class="w-auto">Options</legend>
+
+            <label for="separator">separator</label>
+            <input type="text" id="separator" value=","/>
+            <br/>
+            <label for="newline">newline</label>
+            <input type="text" id="newline" value="\n"/>
+            <br/>
+            <label for="quoteFields">quoteFields</label>
+            <input type="checkbox" id="quoteFields" checked/>
+            <br/>
+            <label for="excludeColumns">excludeColumns</label>
+            <input type="text" id="excludeColumns" value=""/>
+            <br/>
+            <label for="excludeRows">excludeRows</label>
+            <input type="text" id="excludeRows" value=""/>
+            <br/>
+            <label for="trimContent">trimContent</label>
+            <input type="checkbox" id="trimContent" checked/>
+            <br/>
+            <label for="filename">filename</label>
+            <input type="text" id="filename" value="table.csv"/>
+            <br/>
+            <label for="appendTo">appendTo</label>
+            <input type="text" id="appendTo" value="#output"/>
+        </fieldset>
+    </div>
+
+    <div>
+        <pre>
+            <code id="preview"></code>
+        </pre>
+
+        <p>Press the button below to execute the code snippet above</p>
+
+        <div>
+            <button id="execute" onclick="$('#tab').table2csv(action, options)">Execute code</button>
+        </div>
+    </div>
+</div>
+
+<fieldset id="output" class="p-2 border p-3">
+    <legend class="w-auto">#output</legend>
+</fieldset>
+<button onclick="$('#output').find('pre').remove()" class="mt-1">Clear output</button>
+
+<script>
+    let html = $('#html')
+    html.text($('#tabContainer').html())
+    hljs.highlightBlock(html.get(0))
+
+	let options = {}
+	let action
+
+	function updateCode() {
+		options.separator = $("#separator").val().replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t')
+		options.newline = $("#newline").val().replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t')
+		options.quoteFields = $("#quoteFields").prop('checked')
+		options.excludeColumns = $("#excludeColumns").val()
+		options.excludeRows = $("#excludeRows").val()
+		options.trimContent = $("#trimContent").prop('checked')
+		options.filename = $("#filename").val()
+		options.appendTo = $("#appendTo").val()
+
+		action = $("input[type=radio][name=action]:checked").val()
+        let optionString = JSON.stringify(options, null, '\t')
+        let code = "let options = " + optionString + "\n\n" + "$('#tab').table2csv('" + action + "', options)"
+
+        let preview = $("#preview")
+        preview.text(code)
+		hljs.highlightBlock(preview.get(0))
+	}
+
+    $("#parameters").find(":input").change(updateCode).keyup(updateCode)
+
+    updateCode()
+</script>
+
+</body>
+</html>
+
