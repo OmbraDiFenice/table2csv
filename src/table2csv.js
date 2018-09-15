@@ -2,8 +2,8 @@
 
 (function($) {
 	
-	var options = {
-		/* action='downoad' options */
+	var optionsDefaults = {
+		/* action='download' options */
 		filename: 'table.csv',
 		
 		/* action='output' options */
@@ -17,6 +17,8 @@
 		excludeColumns: '',
 		excludeRows: ''
 	};
+
+	var options = {};
 	
 	function quote(text) {
 		return '"' + text.replace('"', '""') + '"';
@@ -46,13 +48,13 @@
 		rows.each(function() {
 			$(this).find("td,th").filter(":visible").not(options.excludeColumns)
 			.each(function(i, col) {
-				col = $(col);
+				var column = $(col);
 				
 				// Strip whitespaces
-				var content = options.trimContent ? $.trim(col.text()) : col.text();
+				var content = options.trimContent ? $.trim(column.text()) : column.text();
 				
 				output += options.quoteFields ? quote(content) : content;
-				if(i != numCols-1) {
+				if(i !== numCols-1) {
 					output += options.separator;
 				} else {
 					output += options.newline;
@@ -70,20 +72,40 @@
 		} else if(action === undefined) {
 			action = 'download';
 		}
+
+		// type checking
+		if(typeof action !== 'string') {
+			throw new Error('"action" argument must be a string')
+		}
+		if(opt !== undefined && typeof opt !== 'object') {
+			throw new Error('"options" argument must be an object')
+		}
+
+		options = $.extend({}, optionsDefaults, opt);
 		
-		$.extend(options, opt);
-		
-		var table = this; // TODO use $.each
-		
+		var table = this.filter('table'); // TODO use $.each
+
+		if(table.length <= 0){
+			throw new Error('table2csv must be called on a <table> element')
+		}
+
+		if(table.length > 1){
+			throw new Error('converting multiple table elements at once is not supported yet')
+		}
+
+		var csv;
+
 		switch(action) {
 			case 'download':
-				var csv = convert(table);
+				csv = convert(table);
 				download(options.filename, csv);
 				break;
 			case 'output':
-				var csv = convert(table);
+				csv = convert(table);
 				$(options.appendTo).append($('<pre>').text(csv));
 				break;
+			default:
+				throw new Error('"action" argument must be one of the supported action strings');
 		}
 		
 		return this;
