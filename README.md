@@ -1,4 +1,6 @@
 # table2csv
+[![Build Status](https://travis-ci.com/OmbraDiFenice/table2csv.svg?branch=master)](https://travis-ci.com/OmbraDiFenice/table2csv)
+
 A simple jQuery plugin to convert HTML tables to CSV
 
 ## Usage
