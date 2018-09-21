@@ -178,33 +178,33 @@
 <button onclick="$('#output').find('pre').remove()" class="mt-1">Clear output</button>
 
 <script>
-    let html = $('#html')
-    html.text($('#tabContainer').html())
-    hljs.highlightBlock(html.get(0))
+    let html = $('#html');
+    html.text($('#tabContainer').html());
+    hljs.highlightBlock(html.get(0));
 
-	let options = {}
-	let action
+	let options = {};
+	let action;
 
 	function updateCode() {
-		options.separator = $("#separator").val().replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t')
-		options.newline = $("#newline").val().replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t')
-		options.quoteFields = $("#quoteFields").prop('checked')
-		options.excludeColumns = $("#excludeColumns").val()
-		options.excludeRows = $("#excludeRows").val()
-		options.trimContent = $("#trimContent").prop('checked')
-		options.filename = $("#filename").val()
-		options.appendTo = $("#appendTo").val()
+		options.separator = $("#separator").val().replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t');
+		options.newline = $("#newline").val().replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t');
+		options.quoteFields = $("#quoteFields").prop('checked');
+		options.excludeColumns = $("#excludeColumns").val();
+		options.excludeRows = $("#excludeRows").val();
+		options.trimContent = $("#trimContent").prop('checked');
+		options.filename = $("#filename").val();
+		options.appendTo = $("#appendTo").val();
 
-		action = $("input[type=radio][name=action]:checked").val()
-        let optionString = JSON.stringify(options, null, '\t')
-        let code = "let options = " + optionString + "\n\n" + "$('#tab').table2csv('" + action + "', options)"
+		action = $("input[type=radio][name=action]:checked").val();
+        let optionString = JSON.stringify(options, null, '\t');
+        let code = "let options = " + optionString + "\n\n" + "$('#tab').table2csv('" + action + "', options)";
 
-        let preview = $("#preview")
-        preview.text(code)
+        let preview = $("#preview");
+        preview.text(code);
 		hljs.highlightBlock(preview.get(0))
 	}
 
-    $("#parameters").find(":input").change(updateCode).keyup(updateCode)
+    $("#parameters").find(":input").change(updateCode).keyup(updateCode);
 
     updateCode()
 </script>
