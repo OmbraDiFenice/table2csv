@@ -1,0 +1,11 @@
+language: node_js
+env:
+  - JQUERY=3.3.1
+  - JQUERY=2.2.4
+  - JQUERY=1.12.4
+install:
+  - npm install
+  - npm install jquery@$JQUERY
+cache:
+  directories:
+    - "node_modules"
