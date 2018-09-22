@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- node
+env:
+- JQUERY=3.3.1
+- JQUERY=2.2.4
+- JQUERY=1.12.4
+install:
+- npm install
+- npm install jquery@$JQUERY
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: npm
+  email: stefano.stoduto@gmail.com
+  api_key:
+    secure: o+flKCoAIN9Wm1augee5dszyyhOmGkeqLcqEKSnXggO+TX7tUEXr0P0vYLdv/UaUezjjwo7IaLuNhX9n153IJyYEzAfACIGuQ/us5yVA6mRziaY2vuiYQfMrgUWntqc5tx2Z1+acU7ARTQJ7Ie/G9nF+nKTzrXGOyKM8OQfhxqyfFfFw/GlJO1Oj0kMDMqWw5FF9NJGmJVmJSb9mKJSF9ynU20co4PH7MgzE66ggruG/2o9NDjTVgNO9W09orTmvBB94+bcm1jkzH0Kp5GLIHXR5RvgIZDVq8Jei0SuDT/09QlPnt1Y0fvJ1VOKqq0FPjAGnA2vszu+aRxAsdw9UakJ0VUVhxextowffDQKxA3albeU4RohsbPvoJ+FxF6nj8sfHhLfeMxg4Vu+X1fSY6Cga3P4zhaWC2X6WWfo/3eY+TejkBuk11rPJBVnJGTKyUgxRrE/oQiZLUBvWuip2zEBc5CgaU7oUuOa07C8clxRma/QNhsumT/WAZfSjwWfEj6HS1pv4GciQM2RrpGMRn6HYDtQb+6VieY9vR9YxQQ5aOwcR9hWX2FT7++VeOlTDgin7AVMION2TW6ZuW3wZSuNnYJL8fb/wabtsl38nFXcbS2mCzaOVH/Eo7AVY9rEaBVyuzgOIDcfFUXH8OuRR1ZIt66tEMLJe8cRwcl3QyV0=
+  on:
+    tags: true
