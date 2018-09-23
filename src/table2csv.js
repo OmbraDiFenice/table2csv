@@ -1,6 +1,6 @@
 (function ($) {
     "use strict";
-    var optionsDefaults = {
+    const optionsDefaults = {
         /* action='download' options */
         filename: "table.csv",
 
@@ -16,7 +16,7 @@
         excludeRows: ""
     };
 
-    var options = {};
+    let options = {};
 
     function quote(text) {
         return "\"" + text.replace("\"", "\"\"") + "\"";
@@ -24,7 +24,7 @@
 
     // taken from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
     function download(filename, text) {
-        var element = document.createElement("a");
+        const element = document.createElement("a");
         element.setAttribute("href", "data:text/csv;charset=utf-8," + encodeURIComponent(text));
         element.setAttribute("download", filename);
 
@@ -37,19 +37,19 @@
     }
 
     function convert(table) {
-        var output = "";
+        let output = "";
 
-        var rows = table.find("tr").not(options.excludeRows);
+        const rows = table.find("tr").not(options.excludeRows);
 
-        var numCols = rows.first().find("td,th").filter(":visible").not(options.excludeColumns).length;
+        const numCols = rows.first().find("td,th").filter(":visible").not(options.excludeColumns).length;
 
         rows.each(function (ignore, elem) {
             $(elem).find("td,th").filter(":visible").not(options.excludeColumns)
                 .each(function (i, col) {
-                    var column = $(col);
+                    const column = $(col);
 
                     // Strip whitespaces
-                    var content = options.trimContent
+                    const content = options.trimContent
                         ? $.trim(column.text())
                         : column.text();
 
@@ -85,7 +85,7 @@
 
         options = $.extend({}, optionsDefaults, opt);
 
-        var table = this.filter("table"); // TODO use $.each
+        const table = this.filter("table"); // TODO use $.each
 
         if (table.length <= 0) {
             throw new Error("table2csv must be called on a <table> element");
@@ -95,7 +95,7 @@
             throw new Error("converting multiple table elements at once is not supported yet");
         }
 
-        var csv;
+        let csv;
 
         switch (action) {
         case "download":

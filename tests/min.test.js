@@ -1,3 +1,3 @@
 window.$ = window.jQuery = require("jquery");
-require("../src/table2csv");
+require("../dist/table2csv.min");
 require("./asserts");

@@ -1,10 +1,14 @@
 {
   "name": "table2csv",
-  "version": "1.1.1",
+  "version": "1.0.0",
   "description": "A simple jQuery plugin to convert HTML tables to CSV",
   "main": "src/table2csv.js",
   "scripts": {
-    "test": "jest --coverage"
+    "pretest": "npm run build",
+    "test": "jest --coverage",
+    "transpile": "babel src -d dist",
+    "minify": "uglifyjs -c -m -o dist/table2csv.min.js dist/table2csv.js",
+    "build": "npm run transpile && npm run minify"
   },
   "repository": {
     "type": "git",
@@ -24,7 +28,16 @@
     "jquery": "^3.3.1"
   },
   "devDependencies": {
-    "jest": "^23.6.0"
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "uglify-js": "^3.4.9"
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -32,7 +45,7 @@
     ],
     "coverageDirectory": "coverage",
     "coverageThreshold": {
-      "./src/table2csv.js": {
+      "global": {
         "branches": 98,
         "statements": 98
       }

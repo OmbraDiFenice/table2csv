@@ -22,11 +22,11 @@ Import jQuery and this script
 
 ```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="/path/to/table2csv.js"></script>
+<script src="/path/to/table2csv.min.js"></script>
 ```
 
 where `/path/to/` will be the path where you installed the plugin.
-If you installed it through npm it will probably be `node_modules/table2csv/src`
+If you installed it through npm it will probably be `node_modules/table2csv/dist`
 
 then invoke the `table2csv()` function on the jQuery object of the table
 
@@ -99,7 +99,7 @@ Convert the table to a csv and start the download of the file. The file name can
 
 * 'output'  
 With this action the csv output is not downloaded as a file, but appended as text inside the html page.
-Use the `appendTo` option to specify the jQuery selector of the destination element (default is `body`).
+Use the `appendTo` option to specify the [jQuery selector](http://api.jquery.com/category/selectors/) of the destination element (default is `body`).
 
 ### Options
 
