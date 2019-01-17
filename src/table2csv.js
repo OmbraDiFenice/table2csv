@@ -25,7 +25,7 @@
     // taken from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
     function download(filename, text) {
         const element = document.createElement("a");
-        element.setAttribute("href", "data:text/csv;charset=utf-8," + encodeURIComponent(text));
+        element.setAttribute("href", "data:text/csv;charset=utf-8,\ufeff" + encodeURIComponent(text));
         element.setAttribute("download", filename);
 
         element.style.display = "none";

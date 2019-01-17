@@ -29,7 +29,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
   function download(filename, text) {
     var element = document.createElement("a");
-    element.setAttribute("href", "data:text/csv;charset=utf-8," + encodeURIComponent(text));
+    element.setAttribute("href", "data:text/csv;charset=utf-8,\uFEFF" + encodeURIComponent(text));
     element.setAttribute("download", filename);
     element.style.display = "none";
     document.body.appendChild(element);
