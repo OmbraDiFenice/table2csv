@@ -23,7 +23,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   var options = {};
 
   function quote(text) {
-    return "\"" + text.replace("\"", "\"\"") + "\"";
+    return "\"" + text.replace(/"/g, "\"\"") + "\"";
   } // taken from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
 
 
