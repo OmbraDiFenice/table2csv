@@ -226,3 +226,20 @@ test('"output" action with "appendTo" option appends the csv to all the matching
     expect($('#out').text()).toBe(expected);
     expect($('#out2').text()).toBe(expected)
 });
+
+test('"return" action returns the csv as a string', () => {
+    const expected = '"Company","Contact","Country"\n"Alfreds Futterkiste","Maria Anders","Germany"\n"Centro comercial Moctezuma","Francisco Chang","Mexico"\n"Ernst Handel","Roland Mendel","Austria"\n"Island Trading","Helen Bennett","UK"\n"Laughing Bacchus Winecellars","Yoshi Tannamuri","Canada"\n"Magazzini Alimentari Riuniti","Giovanni Rovelli","Italy"\n"Seeverkehr","Johannes Gutenberg","München"\n';
+
+    const retVal = $('#tab').table2csv('return');
+    expect(retVal).toBe(expected);
+});
+
+test('action "download" return the jQuery object it was called on', () => {
+    const retVal = $('#tab').table2csv('download');
+    expect(retVal).toEqual($('#tab'));
+});
+
+test('action "output" return the jQuery object it was called on', () => {
+    const retVal = $('#tab').table2csv('output');
+    expect(retVal).toEqual($('#tab'));
+});

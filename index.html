@@ -150,6 +150,9 @@ $ npm install table2csv
 
             <input type="radio" id="output-radio" name="action" value="output" checked/>
             <label for="output-radio">output</label>
+
+            <input type="radio" id="return-radio" name="action" value="return"/>
+            <label for="return-radio">return</label>
         </fieldset>
 
         <fieldset class="border p-3" id="optionsControls">
@@ -189,7 +192,7 @@ $ npm install table2csv
         <p>Press the button below to execute the code snippet above</p>
 
         <div>
-            <button id="execute" onclick="$('#tab').table2csv(action, options)">Execute code</button>
+            <button id="execute" onclick="executeCode()">Execute code</button>
         </div>
     </div>
 </div>
@@ -228,7 +231,14 @@ $ npm install table2csv
 
     $("#parameters").find(":input").change(updateCode).keyup(updateCode);
 
-    updateCode()
+    updateCode();
+
+    function executeCode() {
+        const retVal = $('#tab').table2csv(action, options);
+        if (action === "return") {
+            window.alert(retVal);
+        }
+    }
 </script>
 
 </body>
