@@ -89,7 +89,7 @@ This will start the download of a file called 'table.csv' which will contain the
     "Island Trading","Helen Bennett","UK"
     "Magazzini Alimentari Riuniti","Giovanni Rovelli","Italy"
     
-You can change the name of the downlaoded file and other settings using the options.
+You can change the name of the downloaded file and other settings using the options.
 
 ### Actions
 
@@ -100,6 +100,16 @@ Convert the table to a csv and start the download of the file. The file name can
 * 'output'  
 With this action the csv output is not downloaded as a file, but appended as text inside the html page.
 Use the `appendTo` option to specify the [jQuery selector](http://api.jquery.com/category/selectors/) of the destination element (default is `body`).
+
+* 'return'  
+With this action the extracted csv will be returned as a string by the call to `table2csv()`.  
+**WARNNG:** the other actions will return the same jQuery object they were called on, thus allowing you to chain the call with
+other jQuery methods. With this action instead, since you get a string in return, you will no longer be able to do that.
+For example, this will **not** work:
+
+    ```javascript
+    $("#tab").table2csv('return').find(".col2"); // TypeError: $(...).table2csv(...).find is not a function
+    ```
 
 ### Options
 

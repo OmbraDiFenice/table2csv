@@ -86,18 +86,19 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       throw new Error("converting multiple table elements at once is not supported yet");
     }
 
-    var csv;
+    var csv = convert(table);
 
     switch (action) {
       case "download":
-        csv = convert(table);
         download(options.filename, csv);
         break;
 
       case "output":
-        csv = convert(table);
         $(options.appendTo).append($("<pre>").text(csv));
         break;
+
+      case "return":
+        return csv;
 
       default:
         throw new Error("\"action\" argument must be one of the supported action strings");
