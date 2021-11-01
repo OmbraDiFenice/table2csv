@@ -1,6 +1,6 @@
 {
   "name": "table2csv",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A simple jQuery plugin to convert HTML tables to CSV",
   "main": "src/table2csv.js",
   "scripts": {
@@ -25,16 +25,16 @@
   },
   "homepage": "https://ombradifenice.github.io/table2csv/",
   "dependencies": {
-    "jquery": "^3.3.1"
+    "jquery": "^3.4.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/cli": ">=7.1.0",
+    "@babel/core": ">=7.8.0",
+    "@babel/preset-env": ">=7.1.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "jest": "^23.6.0",
-    "uglify-js": "^3.4.9"
+    "babel-jest": ">=25.0.0",
+    "jest": ">=25.0.0",
+    "uglify-js": ">=3.4.9"
   },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
