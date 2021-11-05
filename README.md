@@ -1,5 +1,5 @@
 # table2csv
-[![Build Status](https://travis-ci.com/OmbraDiFenice/table2csv.svg?branch=master)](https://travis-ci.com/OmbraDiFenice/table2csv)
+![Build Status](https://github.com/OmbraDiFenice/table2csv/actions/workflows/node.js.yml/badge.svg?event=push)
 
 A simple jQuery plugin to convert HTML tables to CSV. It allows you to download or display the content of a regular HTML
 table as a CSV file.
