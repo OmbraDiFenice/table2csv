@@ -28,13 +28,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
   function download(filename, text) {
-    var element = document.createElement("a");
-    element.setAttribute("href", "data:text/csv;charset=utf-8,\uFEFF" + encodeURIComponent(text));
-    element.setAttribute("download", filename);
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    // Add supports for IE 10+
+    if (window.navigator.msSaveOrOpenBlob) {
+      var blob = new Blob([text], {
+        type: 'text/csv'
+      });
+      window.navigator.msSaveBlob(blob, filename);
+    } else {
+      var element = document.createElement("a");
+      element.setAttribute("href", "data:text/csv;charset=utf-8,\uFEFF" + encodeURIComponent(text));
+      element.setAttribute("download", filename);
+      element.style.display = "none";
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }
   }
 
   function convert(table) {
