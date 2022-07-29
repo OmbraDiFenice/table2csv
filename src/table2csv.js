@@ -24,16 +24,19 @@
 
     // taken from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
     function download(filename, text) {
-        const element = document.createElement("a");
-        element.setAttribute("href", "data:text/csv;charset=utf-8,\ufeff" + encodeURIComponent(text));
-        element.setAttribute("download", filename);
-
-        element.style.display = "none";
-        document.body.appendChild(element);
-
-        element.click();
-
-        document.body.removeChild(element);
+        // Add supports for IE 10+
+        if(window.navigator.msSaveOrOpenBlob) {
+            const blob = new Blob([text], {type: 'text/csv'});
+            window.navigator.msSaveBlob(blob, filename);
+        } else {
+            const element = document.createElement("a");
+            element.setAttribute("href", "data:text/csv;charset=utf-8,\ufeff" + encodeURIComponent(text));
+            element.setAttribute("download", filename);
+            element.style.display = "none";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
     }
 
     function convert(table) {
